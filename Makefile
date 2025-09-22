@@ -11,7 +11,7 @@ collectstatic:
 	uv run python3 manage.py collectstatic --noinput
 
 run:
-	uv run puthon3 manage.py runserver
+	uv run python3 manage.py runserver
 
 render-start:
 	uv run gunicorn expenzo.wsgi
