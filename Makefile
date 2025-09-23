@@ -31,3 +31,6 @@ lint-fix:
 
 test:
 	uv run pytest --ds=expenzo.settings --reuse-db
+
+activate:
+	source .venv/bin/activate
