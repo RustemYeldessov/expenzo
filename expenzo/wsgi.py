@@ -1,5 +1,5 @@
 """
-WSGI config for expenzo8767 project.
+WSGI config for expenzo project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'expenzo8767.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'expenzo.settings')
 
 application = get_wsgi_application()

@@ -1,5 +1,5 @@
 """
-ASGI config for expenzo8767 project.
+ASGI config for expenzo project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
