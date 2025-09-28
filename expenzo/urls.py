@@ -21,8 +21,8 @@ from .views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    #
-    # path('users/', include("expenzo.users.urls")),
+    
+    path('users/', include("expenzo.users.urls")),
     #
     # path('expenses/', include("expenzo.expenses.urls")),
 ]
