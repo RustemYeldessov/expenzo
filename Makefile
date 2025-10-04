@@ -18,7 +18,7 @@ render-start:
 
 render-build:
 	./build.sh
-	uv run python3 manage.py migrate --noinput
+	uv run python3 manage.py migrate --fake-initial --noinput
 
 build:
 	./build.sh
