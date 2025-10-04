@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from expenzo.users import views
 
@@ -18,4 +18,6 @@ urlpatterns = [
         views.UserDeleteView.as_view(),
         name="users_delete"
     ),
+
+    path("expenses/", include("expenzo.expenses.urls")),
 ]

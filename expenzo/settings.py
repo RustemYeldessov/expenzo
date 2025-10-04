@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 import dj_database_url
-from django.conf.global_settings import LOGIN_URL, LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
+from django.conf.global_settings import LOGIN_URL, LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL, AUTH_USER_MODEL
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -46,10 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     # 'import_export',
-    'django_bootstrap5'
-    # 'expenzo.users',
-    # 'expenzo.expenses',
+    'django_bootstrap5',
+    'expenzo.users',
+    'expenzo.expenses',
+    'expenzo.categories',
+    'expenzo.sections',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +106,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = "users.User"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
