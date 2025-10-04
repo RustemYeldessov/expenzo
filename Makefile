@@ -18,14 +18,13 @@ render-start:
 
 render-build:
 	./build.sh
-	uv run python3 manage.py flush --noinput
-	uv run python3 manage.py migrate --fake-initial --noinput
+	uv run python3 manage.py migrate --noinput
 
 build:
 	./build.sh
 
 lint:
-	un run ruff check
+	uv run ruff check
 
 lint-fix:
 	uv run ruff check --fix
