@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n django_bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">{% trans "Expenses" %}</h1>
+
+    <a href="{% url 'expenses_create' %}" class="btn btn-primary mb-3">
+        {% trans "Add new expense" %}
+    </a>
+
+    <form method="get" class="mb-4 row g-3">
+        <div class="col-md-3">
+            {% bootstrap_field filter.form.section show_label=True %}
+        </div>
+        <div class="col-md-3">
+            {% bootstrap_field filter.form.category show_label=True %}
+        </div>
+        <div class="col-md-3">
+            {% bootstrap_field filter.form.author show_label=True %}
+        </div>
+        <div class="col-md-3">
+            {% bootstrap_field filter.form.date show_label=True %}
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">
+                {% trans "Filter" %}
+            </button>
+            <a href="{% url 'expenses_index' %}" class="btn btn-secondary">
+                {% trans "Reset" %}
+            </a>
+        </div>
+    </form>
+
+    <table class="table table-striped" style="table-layout: fixed;">
+        <thead>
+            <tr>
+                <th class="col-1">ID</th>
+                <th class="col-2">{% trans "Section" %}</th>
+                <th class="col-2">{% trans "Date" %}</th>
+                <th class="col-2">{% trans "Category" %}</th>
+                <th class="col-2">{% trans "Description" %}</th>
+                <th class="col-2">{% trans "Amount" %}</th>
+                <th class="col-2">{% trans "Author" %}</th>
+                <th class="col-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td class="col-1">{{ expense.id }}</td>
+                <td class="col-2">
+                    <a href="{% url 'expenses_show' expense.id %}">{{ expense.section.name }}</a>
+                </td>
+                <td class="col-2">{{ expense.date|date:"d.m.Y" }}</td>
+                <td class="col-2">{{ expense.category.name }}</td>
+                <td class="col-2">{{ expense.description }}</td>
+                <td class="col-2">{{ expense.amount }}</td>
+                <td class="col-2">{{ expense.author.get_full_name }}</td>
+                <td class="col-1">
+                    <a href="{% url 'expenses_update' expense.id %}">{% trans "Update" %}</a>
+                    <br>
+                    <a href="{% url 'expenses_delete' expense.id %}">{% trans "Delete" %}</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">{% trans "No expenses" %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
