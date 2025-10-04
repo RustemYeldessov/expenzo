@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1 class="my-4">{% trans "Delete user" %}</h1>
-  <form action="{% url 'users_delete' user.pk %}" method="post">
+  <form action="{% url 'users:delete' user.pk %}" method="post">
     {% csrf_token %}
     <p>
       {% blocktrans with username=user.get_full_name %}Are you sure you want to delete {{ username }}?{% endblocktrans %}

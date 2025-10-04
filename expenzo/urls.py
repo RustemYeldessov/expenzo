@@ -15,14 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    
-    path('users/', include("expenzo.users.urls")),
-    #
-    # path('expenses/', include("expenzo.expenses.urls")),
+
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+
+    path('users/', include(("expenzo.users.urls", "users"), namespace="users")),
+    path('sections/', include(("expenzo.sections.urls", "sections"), namespace="sections")),
+    path('categories/', include(("expenzo.categories.urls", "categories"), namespace="categories")),
+    path('expenses/', include(("expenzo.expenses.urls", "expenses"), namespace="expenses")),
 ]

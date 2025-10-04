@@ -59,7 +59,7 @@ class UserUpdateView(
             self.request,
             _("You do not have permission to perform this action")
         )
-        return redirect("users_index")
+        return redirect("users:index")
 
 
 class UserDeleteView(
@@ -70,7 +70,7 @@ class UserDeleteView(
 ):
     model = User
     template_name = "users/delete.html"
-    success_url = reverse_lazy("users_index")
+    success_url = reverse_lazy("users:index")
     success_message = _("User deleted successfully")
 
     def test_func(self):
@@ -107,9 +107,10 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     redirect_authenticated_user = True
 
     def form_valid(self, form):
+        response = super().form_valid(form)
         messages.success(self.request, _("You are logged in"))
         self.request.session['just_logged_in'] = True
-        return super().form_valid(form)
+        return response
 
     def get_success_url(self):
         return reverse_lazy("index")
@@ -119,5 +120,6 @@ class UserLogoutView(LogoutView):
     next_page = reverse_lazy("index")
 
     def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
         messages.success(request, _("You are logged out"))
-        return super().dispatch(request, *args, **kwargs)
+        return response
