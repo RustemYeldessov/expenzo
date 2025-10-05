@@ -18,21 +18,21 @@ class CategoryListView(LoginRequiredMixin, ListView):
 
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = CategoryForm
-    template_name = 'category/create.html'
-    success_url = reverse_lazy('categories_index')
+    template_name = 'categories/create.html'
+    success_url = reverse_lazy('categories:index')
     success_message = _('Category creates successfully')
 
 class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Category
     form_class = CategoryForm
     template_name = 'categories/update.html'
-    success_url = reverse_lazy('categories_index')
+    success_url = reverse_lazy('categories:index')
     success_message = _('Category updated successfully')
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name = 'categories/delete.html'
-    success_url = reverse_lazy('categories_index')
+    success_url = reverse_lazy('categories:index')
     success_message = _('Category deleted successfully')
 
     def post(self, request, *args, **kwargs):

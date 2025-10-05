@@ -19,20 +19,20 @@ class SectionListView(LoginRequiredMixin, ListView):
 class SectionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = SectionForm
     template_name = 'sections/create.html'
-    success_url = reverse_lazy('sections_index')
+    success_url = reverse_lazy('sections:index')
     success_message = _('Section creates successfully')
 
 class SectionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Section
     form_class = SectionForm
     template_name = 'sections/update.html'
-    success_url = reverse_lazy('sections_index')
+    success_url = reverse_lazy('sections:index')
     success_message = _('Section updated successfully')
 
 class SectionDeleteView(LoginRequiredMixin, DeleteView):
     model = Section
     template_name = 'sections/delete.html'
-    success_url = reverse_lazy('sections_index')
+    success_url = reverse_lazy('sections:index')
     success_message = _('Section deleted successfully')
 
     def post(self, request, *args, **kwargs):

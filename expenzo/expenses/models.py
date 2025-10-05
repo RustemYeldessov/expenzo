@@ -36,8 +36,8 @@ class Expense(models.Model):
     )
     amount = models.DecimalField(
         max_digits=10,
-        decimal_places=2,
-        validators=[MinValueValidator(Decimal("0.01"))],
+        decimal_places=0,
+        validators=[MinValueValidator(Decimal("1"))],
         verbose_name=_("Amount")
     )
     author = models.ForeignKey(

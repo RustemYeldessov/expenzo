@@ -42,7 +42,7 @@ class ExpenseCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Expense
     form_class = ExpenseForm
     template_name = 'expenses/create.html'
-    success_url = 'expenses_index'
+    success_url = reverse_lazy('expenses:index')
     success_message = _('Expense created successfully')
 
     def form_valid(self, form):
@@ -53,14 +53,14 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Expense
     form_class = ExpenseForm
     template_name = 'expanses/update.html'
-    success_url = 'expenses_index'
+    success_url = reverse_lazy('expenses:index')
     success_message = _('Expense updated successfully')
 
 class ExpenseDeleteView(LoginRequiredMixin, SuccessMessageMixin,
                         UserPassesTestMixin, DeleteView):
     model = Expense
     template_name = 'expenses/delete.html'
-    success_url = 'expenses_index'
+    success_url = reverse_lazy('expenses:index')
     success_message = _('Expense deleted successfully')
 
     def test_func(self):
