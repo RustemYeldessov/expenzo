@@ -35,9 +35,9 @@
                 </div>
                 <div class="row p-1">
                     <div class="col">
-                        <a href="{% url 'expense_update' expense.id %}">{% trans "Edit" %}</a>
+                        <a href="{% url 'expenses:update' expense.id %}">{% trans "Edit" %}</a>
                         <br>
-                        <a href="{% url 'expense_delete' expense.id %}">{% trans "Delete" %}</a>
+                        <a href="{% url 'expenses:delete' expense.id %}">{% trans "Delete" %}</a>
                     </div>
                 </div>
             </div>
