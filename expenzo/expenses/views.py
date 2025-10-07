@@ -52,7 +52,7 @@ class ExpenseCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Expense
     form_class = ExpenseForm
-    template_name = 'expanses/update.html'
+    template_name = 'expenses/update.html'
     success_url = reverse_lazy('expenses:index')
     success_message = _('Expense updated successfully')
 
