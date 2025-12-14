@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_bootstrap5',
-    # 'expenzo',
+    'django_bootstrap5',
+    'expenzo',
     'expenzo.categories.apps.CategoriesConfig',
 ]
 
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'expenzo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'expenzo' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
