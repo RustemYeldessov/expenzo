@@ -23,4 +23,5 @@ dist/
 build/
 *.egg-info/
 node_modules/
-
+.idea
+db.sqlite3
