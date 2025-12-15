@@ -2,15 +2,15 @@
 {% load i18n %}
 
 {% block content %}
-<h1 class="my-4"></h1>
+<h1 class="my-4">{% trans "Dashboard" %}</h1>
 
-<h1 class="my-4"></h1>
 <div class="card">
-<div class="card-body p-5 bg-light">
-<div class="display-4">{% trans "Hello from Expenzo!" %}</div>
-<p class="lead">{% trans "It helps you to keep track your money" %}</p>
-<hr>
-<a class="btn btn-primary btn-lg" href="#">{% trans "Expenzo bot" %}</a>
-</div>
+    <div class="card-body p-5 bg-light">
+        <div class="display-4">{% trans "Welcome to Expenzo!" %}</div>
+        <p class="lead">{% trans "It helps you to keep track of your money" %}</p>
+        <hr>
+        <a class="btn btn-primary btn-lg" href="">
+            {% trans "Add new expense" %}
+        </a>
 </div>
 {% endblock %}
