@@ -28,7 +28,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
     template_name = "users/create.html"
     form_class = UserCreateForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("users:login")
     success_message = _("User created successfully")
 
 
@@ -41,7 +41,7 @@ class UserUpdateView(
     model = User
     template_name = "users/update.html"
     form_class = UserUpdateForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("users:login")
     success_message = _("User updated successfully")
 
     # Проверка на то, является ли залогиненный пользователь тем,
@@ -120,10 +120,9 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         return reverse_lazy("index")
 
 
-class UserLogoutView(SuccessMessageMixin, LogoutView):
-    next_page = reverse_lazy("index")
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy("users:index")
 
-    def dispatch(self, request, *args, **kwargs):
-        response = super().dispatch(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
         messages.success(request, _("You are logged out"))
-        return response
+        return super().post(request, *args, **kwargs)
