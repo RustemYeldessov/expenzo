@@ -121,7 +121,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 
 class UserLogoutView(LogoutView):
-    next_page = reverse_lazy("users:index")
+    next_page = reverse_lazy("users:login")
 
     def post(self, request, *args, **kwargs):
         messages.success(request, _("You are logged out"))

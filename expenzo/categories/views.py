@@ -13,7 +13,7 @@ from .models import Category
 
 class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
-    template_name = 'category/index.html'
+    template_name = 'categories/index.html'
     context_object_name = 'categories'
 
     # Скрываем данные о категориях от других пользователей

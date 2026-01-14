@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{% trans "Categories" %}</h1>
-    <a class="btn btn-primary mb-3" href="{% url 'categories:create' %}">{% trans "Create category" %}</a>
+    <a class="btn btn-primary mb-3" href="{% url 'categories:create' %}">{% trans "Add category" %}</a>
 
     <table class="table table-striped">
         <thead>
@@ -22,7 +22,7 @@
             <tr>
                 <td class="col-1">{{ category.id }}</td>
                 <td class="col-5">{{ category.name }}</td>
-                <td class="col-1">{{ category.created_at|date:"d.m.Y H:i" }}</td>
+                <td class="col-1">{{ category.created_at|date:"d.m.Y" }}</td>
                 <td class="col-1">
                     <a href="{% url 'categories:update' category.id %}">{% trans "Edit" %}</a>
                     <br>
