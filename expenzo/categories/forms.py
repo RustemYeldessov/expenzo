@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import Category
 
 
-class CategoryForms(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'description']
