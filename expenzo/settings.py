@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'expenzo',
     'expenzo.categories.apps.CategoriesConfig',
+    'expenzo.sections.app.SectionsConfig'
 ]
 
 MIDDLEWARE = [
