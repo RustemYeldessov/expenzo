@@ -3,7 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.CategoryListView.as_view(), name='categories_index'),
     path('create/', views.CategoryCreateView.as_view(), name='category_create'),
     path(
         '<int:pk>/update/',
@@ -15,4 +14,5 @@ urlpatterns = [
         views.CategoryDeleteView.as_view(),
         name='category_delete'
     ),
+    path('', views.CategoryListView.as_view(), name='categories_index'),
 ]
