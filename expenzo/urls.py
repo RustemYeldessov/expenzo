@@ -5,7 +5,10 @@ from .views import IndexView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", IndexView.as_view(), name='index'),
 
-    path("users", include(("expenzo.users.urls", "users"), namespace="users")),
+    path("users/", include(("expenzo.users.urls", "users"), namespace="users")),
+    path("categories/", include(("expenzo.categories.urls", "categories"), namespace="categories")),
+    path("sections/", include(("expenzo.sections.urls", "sections"), namespace="sections")),
+
+    path("", IndexView.as_view(), name='index'),
 ]
