@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{% trans "Expense detail" %}</h1>
+
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h2>{% trans "Expense" %} #{{ expense.id }}</h2>
+        </div>
+        <div class="card-body bg-light">
+            <p>{{ expense.description }}</p>
+            <hr>
+            <div class="container">
+                <div class="row p-1">
+                    <div class="col">{% trans "Author" %}</div>
+                    <div class="col">{{ expense.author.get_full_name|default:expense.author.username }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Section" %}</div>
+                    <div class="col">{{ expense.section.name }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Category" %}</div>
+                    <div class="col">{{ expense.category.name }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Date" %}</div>
+                    <div class="col">{{ expense.date|date:"d.m.Y" }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Amount" %}</div>
+                    <div class="col">{{ expense.amount }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">
+                        <a href="{% url 'expenses:update' expense.id %}">{% trans "Edit" %}</a>
+                        <br>
+                        <a href="{% url 'expenses:delete' expense.id %}">{% trans "Delete" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
