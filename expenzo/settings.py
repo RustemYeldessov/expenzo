@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'django_bootstrap5',
     'expenzo',
     'expenzo.categories.apps.CategoriesConfig',
     'expenzo.sections.apps.SectionsConfig',
     'expenzo.core.apps.CoreConfig',
+    'expenzo.expenses.apps.ExpensesConfig',
 ]
 
 MIDDLEWARE = [
