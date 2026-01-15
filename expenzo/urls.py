@@ -9,6 +9,7 @@ urlpatterns = [
     path("users/", include(("expenzo.users.urls", "users"), namespace="users")),
     path("categories/", include(("expenzo.categories.urls", "categories"), namespace="categories")),
     path("sections/", include(("expenzo.sections.urls", "sections"), namespace="sections")),
+    path("expenses/", include(("expenzo.expenses.urls", "expenses"), namespace="expenses")),
 
     path("", IndexView.as_view(), name='index'),
 ]
