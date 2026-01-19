@@ -55,7 +55,7 @@ class UserCreateForm(UserCreationForm):
             if len(password1) < 3:
                 self.add_error(
                     "password1",
-                    _("The endered password is too short. \
+                    _("The entered password is too short. \
                       It must contain at least 3 characters")
                 )
         return cleaned_data
@@ -83,7 +83,7 @@ class UserUpdateForm(UserCreateForm):
         if User.objects.filter(username=username).exclude(
                 pk=self.instance.pk).exists():
             raise forms.ValidationError(
-                User._meta.get_field('username').error_message['unique']
+                User.meta.get_field('username').error_message['unique']
         )
 
         return username
