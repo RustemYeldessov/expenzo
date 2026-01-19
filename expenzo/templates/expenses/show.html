@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row p-1">
                     <div class="col">{% trans "Author" %}</div>
-                    <div class="col">{{ expense.author.get_full_name|default:expense.author.username }}</div>
+                    <div class="col">{{ expense.user.get_full_name|default:expense.user.username }}</div>
                 </div>
                 <div class="row p-1">
                     <div class="col">{% trans "Section" %}</div>
