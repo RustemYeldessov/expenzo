@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n django_bootstrap5 %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Статистика расходов</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Записей сегодня</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ count_today }}</h5>
+                    <p class="card-text">Дата: {{ today|date:"d.m.Y" }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Сумма за сегодня</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ sum_today }} тенге</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
