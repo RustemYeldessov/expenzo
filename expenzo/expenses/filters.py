@@ -16,14 +16,15 @@ class ExpenseFilter(django_filters.FilterSet):
     )
     date = django_filters.DateFromToRangeFilter(
         field_name="date",
-        label=_("Date")
+        label=_("Date"),
+        widget=django_filters.widgets.RangeWidget(
+            attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }
+        )
+
     )
-
-    # user = django_filters.ModelChoiceFilter(
-    #     queryset=User.objects.all(),
-    #     label=_("Author")
-    # )
-
     category = django_filters.ModelChoiceFilter(
         queryset=Category.objects.none(),
         label=_("Category")
