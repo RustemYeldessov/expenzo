@@ -33,7 +33,7 @@
 
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="#">{% trans "Statistics" %}</a>
+            <a class="nav-link" href="{% url 'analytics:statistics' %}">{% trans "Statistics" %}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'expenses:index' %}">{% trans "Expenses" %}</a>
