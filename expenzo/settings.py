@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'expenzo.sections.apps.SectionsConfig',
     'expenzo.core.apps.CoreConfig',
     'expenzo.expenses.apps.ExpensesConfig',
+    'expenzo.analytics.apps.AnalyticsConfig',
 ]
 
 MIDDLEWARE = [
