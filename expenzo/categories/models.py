@@ -3,10 +3,17 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
+
+    class Meta:
+        # Это гарантирует, что у одного пользователя не будет двух одинаковых названий
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'name'], name='unique_user_category')
+        ]
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
