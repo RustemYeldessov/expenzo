@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n django_bootstrap5 %}
+{% load humanize %}
 
 {% block content %}
 <div class="container">
@@ -56,7 +57,7 @@
                 <td class="col-1">{{ expense.id }}</td>
                 <td class="col-2">{{ expense.date|date:"d.m.Y" }}</td>
                 <td class="col-2">{{ expense.description }}</td>
-                <td class="col-2">{{ expense.amount }}</td>
+                <td class="col-2">{{ expense.amount|floatformat:0|intcomma }} ₸</td>
                 <td class="col-2">{{ expense.category.name }}</td>
                 <td class="col-1">
                     <a href="{% url 'expenses:show' expense.id %}">{% trans "Details" %}</a>
