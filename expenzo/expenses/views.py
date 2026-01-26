@@ -67,6 +67,11 @@ class ExpenseUpdateView(
         expense = self.get_object()
         return self.request.user == expense.user
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def handle_no_permission(self):
         messages.error(
             self.request,
