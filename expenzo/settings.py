@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_bootstrap5',
     'django.contrib.humanize',
+    'rest_framework',
     'expenzo',
     'expenzo.categories.apps.CategoriesConfig',
     'expenzo.sections.apps.SectionsConfig',
