@@ -23,3 +23,5 @@ ruff==0.14.7
 sqlparse==0.5.4
 urllib3==2.5.0
 whitenoise==6.11.0
+
+djangorestframework~=3.16.1
