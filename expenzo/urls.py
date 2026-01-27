@@ -13,4 +13,6 @@ urlpatterns = [
     path("analytics/", include(("expenzo.analytics.urls", "analytics"), namespace="analytics")),
 
     path("", IndexView.as_view(), name='index'),
+
+    path('api-auth/', include('rest_framework.urls'))
 ]
