@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'rest_framework',
     'expenzo',
+    'expenzo.users.apps.UsersConfig',
     'expenzo.categories.apps.CategoriesConfig',
     'expenzo.sections.apps.SectionsConfig',
     'expenzo.core.apps.CoreConfig',
@@ -96,6 +97,7 @@ if DATABASES['default'].get('ENGINE') == 'django.db.backends.postgresql':
         'sslmode': 'require',
     }
 
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
