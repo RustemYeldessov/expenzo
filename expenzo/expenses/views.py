@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
+from django.template.base import kwarg_re
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.utils.translation import gettext_lazy as _
@@ -24,6 +25,25 @@ class ExpenseListView(LoginRequiredMixin, FilterView):
 
     def get_queryset(self):
         return Expense.objects.filter(user=self.request.user)
+
+    # Этот метод сохраняет фильтр трат на время действия сессии
+    def get_filterset_kwargs(self, filterset_class):
+        kwargs = super().get_filterset_kwargs(filterset_class)
+        session_key = f'expense_filter_{self.request.user.id}'
+
+        if kwargs.get('data'):
+            self.request.session[session_key] = kwargs['data'].dict()
+        else:
+            saved_filter = self.request.session.get(session_key)
+            if saved_filter:
+                kwargs['data'] = saved_filter
+
+        if self.request.GET.get('reset'):
+            if session_key in self.request.session:
+                del self.request.session[session_key]
+            kwargs['data'] = {}
+
+        return kwargs
 
 class ExpenseDetailView(LoginRequiredMixin, DetailView):
     model = Expense
