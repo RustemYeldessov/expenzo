@@ -1,12 +1,12 @@
-from dataclasses import fields
-
 from django.db import models
-from django.contrib.auth.models import User
-
+from django.conf import settings
 
 class Section(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     description = models.TextField(blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
 
