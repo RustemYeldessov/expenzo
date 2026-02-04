@@ -22,9 +22,10 @@ class ExpenseListView(LoginRequiredMixin, FilterView):
     template_name = "expenses/index.html"
     context_object_name = "expenses"
     filterset_class = ExpenseFilter
+    paginate_by = 20
 
     def get_queryset(self):
-        return Expense.objects.filter(user=self.request.user)
+        return Expense.objects.filter(user=self.request.user).order_by('-date', '-id')
 
     # Этот метод сохраняет фильтр трат на время действия сессии
     def get_filterset_kwargs(self, filterset_class):
