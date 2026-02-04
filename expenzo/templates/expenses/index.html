@@ -42,6 +42,8 @@
 
     <table class="table table-striped" style="table-layout: fixed;">
         <thead>
+            <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <tr>
                 <th style="width: 5%;">ID</th>
                 <th style="width: 15%;">{% trans "Date" %}</th>
@@ -59,12 +61,10 @@
                 <td class="col-2">{{ expense.description }}</td>
                 <td class="col-2">{{ expense.amount|floatformat:0|intcomma }} ₸</td>
                 <td class="col-2">{{ expense.category.name }}</td>
-                <td class="col-1">
-                    <a href="{% url 'expenses:show' expense.id %}">{% trans "Details" %}</a>
-                    <br>
-                    <a href="{% url 'expenses:update' expense.id %}">{% trans "Update" %}</a>
-                    <br>
-                    <a href="{% url 'expenses:delete' expense.id %}">{% trans "Delete" %}</a>
+                <td class="col-1 text-nowrap">
+                    <a href="{% url 'expenses:show' expense.id %}"><i class="bi bi-eye"></i></a>
+                    <a href="{% url 'expenses:update' expense.id %}"><i class="bi bi-pencil"></i></a>
+                    <a href="{% url 'expenses:delete' expense.id %}"><i class="bi bi-trash text-danger"></i></a>
                 </td>
             </tr>
             {% empty %}
