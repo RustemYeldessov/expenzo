@@ -15,10 +15,11 @@ class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
     template_name = 'categories/index.html'
     context_object_name = 'categories'
+    paginate_by = 15
 
     # Скрываем данные о категориях от других пользователей
     def get_queryset(self):
-        return Category.objects.filter(user=self.request.user)
+        return Category.objects.filter(user=self.request.user).order_by('id', 'name')
 
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Category

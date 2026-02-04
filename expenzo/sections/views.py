@@ -15,10 +15,11 @@ class SectionListView(LoginRequiredMixin, ListView):
     model = Section
     template_name = "sections/index.html"
     context_object_name = "sections"
+    paginate_by = 15
 
     # Скрываем данные о категориях от других пользователей
     def get_queryset(self):
-        return Section.objects.filter(user=self.request.user)
+        return Section.objects.filter(user=self.request.user).order_by('id', 'name')
 
 class SectionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Section

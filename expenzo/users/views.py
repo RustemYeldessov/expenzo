@@ -22,6 +22,7 @@ class UserListView(ListView):
     model = User
     template_name = "users/index.html"
     context_object_name = "users"
+    paginate_by = 15
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
