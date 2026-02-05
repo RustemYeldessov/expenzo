@@ -7,9 +7,26 @@ from expenzo.expenses.models import Expense
 
 def expenses_statistics_view(request):
     today = timezone.now().date()
+    session_key = f'statistics_filter_{request.user.id}'
+
+    if request.GET.get('reset'):
+        if session_key in request.session:
+            del request.session[session_key]
+        from django.shortcuts import redirect
+        return redirect('analytics:statistics')
 
     start_date_str = request.GET.get('start_date')
     end_date_str = request.GET.get('end_date')
+
+    if not start_date_str and not end_date_str:
+        saved_filters = request.session.get(session_key, {})
+        start_date_str = saved_filters.get('start_date')
+        end_date_str = saved_filters.get('end_date')
+    else:
+        request.session[session_key] = {
+            'start_date': start_date_str,
+            'end_date': end_date_str
+        }
 
     try:
         if start_date_str:

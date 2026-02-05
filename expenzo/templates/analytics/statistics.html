@@ -4,21 +4,26 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Статистика расходов</h1>
+    <h1 class="mb-4">{% trans "Expenses statistics" %}</h1>
 
     <div class="card mb-4 bg-light">
         <div class="card-body">
             <form method="get" class="row g-3 align-items-end">
-                <div class="col-md-4">
-                    <label for="start_date" class="form-label">Начало периода</label>
+                <div class="col-md-3">
+                    <label for="start_date" class="form-label">{% trans "Start date" %}</label>
                     <input type="date" name="start_date" id="start_date" class="form-control" value="{{ start_date|date:'Y-m-d' }}">
                 </div>
-                <div class="col-md-4">
-                    <label for="end_date" class="form-label">Конец периода</label>
+                <div class="col-md-3">
+                    <label for="end_date" class="form-label">{% trans "End date" %}</label>
                     <input type="date" name="end_date" id="end_date" class="form-control" value="{{ end_date|date:'Y-m-d' }}">
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary w-100">Показать</button>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary w-50">{% trans "Show" %}</button>
+                        <a href="{% url 'analytics:statistics' %}?reset=1" class="btn btn-secondary w-50 d-flex align-items-center justify-content-center">
+                            {% trans "Reset" %}
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -29,8 +34,12 @@
             <div class="card border-success">
                 <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
                     <div>
-                        <h4 class="mb-0">Траты по категориям</h4>
-                        <small>с {{ start_date|date:"d.m.Y" }} по {{ end_date|date:"d.m.Y" }}</small>
+                        <h4 class="mb-0">{% trans "Expenses by categories" %}</h4>
+                        <small class="text-white-50">
+                            {% blocktrans with start=start_date|date:"d.m.Y" end=end_date|date:"d.m.Y" %}
+                                From {{ start }} to {{ end }}
+                            {% endblocktrans %}
+                        </small>
                     </div>
                     <div class="text-end">
                         <span class="h4 mb-0">{{ total_sum_by_period|floatformat:0|intcomma }} ₸</span>
@@ -39,15 +48,19 @@
 
                 <div class="card-body">
                     <div class="row">
+                        {% trans "Uncategorized" as uncategorized_label %}
+
                         {% for item in expenses_by_category %}
                             <div class="col-12 mb-2 border-bottom pb-1">
                                 <div class="d-flex justify-content-between">
-                                    <span>{{ item.category__name|default:"Без категории" }}</span>
+                                    <span>{{ item.category__name|default:uncategorized_label }}</span>
                                     <span class="fw-bold">{{ item.sum|floatformat:0|intcomma }} ₸</span>
                                 </div>
                             </div>
                         {% empty %}
-                            <div class="col-12 text-center text-muted">За выбранный период расходов не найдено</div>
+                            <div class="col-12 text-center text-muted">
+                                {% trans "No expenses found for the selected period" %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
