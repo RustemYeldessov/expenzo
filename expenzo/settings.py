@@ -92,6 +92,21 @@ DATABASES = {
     )
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'neondb',  # Оставляем только чистое имя базы
+#         'USER': 'neondb_owner',
+#         'PASSWORD': 'npg_bmj5Qt6Ovxki',
+#         'HOST': 'ep-winter-fog-ad4nudsx-pooler.c-2.us-east-1.aws.neon.tech',
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#         },
+#         'CONN_MAX_AGE': 600, # Полезно для стабильности соединения с Neon
+#     }
+# }
+
 if DATABASES['default'].get('ENGINE') == 'django.db.backends.postgresql':
     DATABASES['default']['OPTIONS'] = {
         'sslmode': 'require',
