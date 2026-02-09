@@ -3,10 +3,13 @@ from datetime import date
 from django.db.models import Sum
 from django.shortcuts import render
 from expenzo.expenses.models import Expense
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def expenses_statistics_view(request):
     today = timezone.now().date()
+    user = request.user
     session_key = f'statistics_filter_{request.user.id}'
 
     if request.GET.get('reset'):
@@ -42,18 +45,19 @@ def expenses_statistics_view(request):
         start_date = today.replace(day=1)
         end_date = today
 
+    user_expenses = Expense.objects.filter(user=user)
     # 1. Общая статистика (за всё время)
-    total_count = Expense.objects.count()
-    total_sum = Expense.objects.aggregate(total=Sum("amount"))['total'] or 0
+    total_count = user_expenses.count()
+    total_sum = user_expenses.aggregate(total=Sum("amount"))['total'] or 0
 
     # 2. Статистика за сегодня
-    count_today = Expense.objects.filter(date=today).count()
-    sum_today = Expense.objects.filter(date=today).aggregate(total=Sum('amount'))['total'] or 0
+    count_today = user_expenses.filter(date=today).count()
+    sum_today = user_expenses.filter(date=today).aggregate(total=Sum('amount'))['total'] or 0
 
     # 3. Траты по категориям ЗА ТЕКУЩИЙ МЕСЯЦ
     # Сначала фильтруем, потом группируем
     expenses_by_category = (
-        Expense.objects.filter(date__gte=start_date, date__lte=end_date)
+        user_expenses.filter(date__gte=start_date, date__lte=end_date)
         .values("category__name")
         .annotate(sum=Sum("amount"))
         .order_by("-sum")
