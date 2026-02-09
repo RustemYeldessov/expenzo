@@ -14,13 +14,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         User = get_user_model()
         # 1. Исправляем получение юзера (добавили скобки)
-        user = User.objects.filter(username='admin').first() or User.objects.first()
+        user = User.objects.filter(username='rus_yeldessov').first() or User.objects.first()
 
         if not user:
             self.stdout.write(self.style.ERROR('Пользователь не найден!'))
             return
 
-        file_path = 'test_expenses.csv'
+        file_path = 'new_expenses.csv'
         count = 0
         skipped_count = 0
 
