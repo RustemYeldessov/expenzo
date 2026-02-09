@@ -9,9 +9,11 @@ from .serializers import ExpenseSerializer
 
 class ExpenseAPIView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request):
-        expenses_list = Expense.objects.all().value()
-        return Response({'expenses': list(expenses_list)})
+        expenses_list = Expense.objects.filter(user=request.user).order_by('-id')
+        serializer = ExpenseSerializer(expenses_list, many=True)
+        return Response({'expenses': serializer.data})
 
     def post(self, request):
         serializer = ExpenseSerializer(data=request.data)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django.contrib.humanize',
     'rest_framework',
+    'rest_framework.authtoken',
     'expenzo',
     'expenzo.users.apps.UsersConfig',
     'expenzo.categories.apps.CategoriesConfig',
@@ -132,6 +133,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
