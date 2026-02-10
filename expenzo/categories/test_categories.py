@@ -14,23 +14,20 @@ class TestCategoriesCRUD:
 
     @pytest.fixture
     def user(self):
-        return User.objects.create_user(
-            username='testuser',
-            password='password123'
-        )
+        return User.objects.create_user(username='testuser', password='password123')
 
     @pytest.fixture
     def section(self, user):
         return Section.objects.create(name='test_section', user=user)
 
     @pytest.fixture
+    def category(self, user):
+        return Category.objects.create(name='Bug', user=user)
+
+    @pytest.fixture
     def logged_client(self, client, user):
         client.login(username='testuser', password='password123')
         return client
-
-    @pytest.fixture
-    def category(self, user):
-        return Category.objects.create(name='Bug', user=user)
 
     def test_category_list(self, logged_client, category):
         url = reverse('categories:index')
@@ -46,10 +43,10 @@ class TestCategoriesCRUD:
 
     def test_category_update(self, logged_client, category):
         url = reverse('categories:update', args=[category.id])
-        response = logged_client.post(url, {'name': 'NewCategory'})
+        response = logged_client.post(url, {'name': 'UpdatedCategory'})
         category.refresh_from_db()
         assert response.status_code == 302
-        assert category.name == 'NewCategory'
+        assert category.name == 'UpdatedCategory'
 
     def test_delete_category(self, logged_client, category):
         url = reverse('categories:delete', args=[category.id])
