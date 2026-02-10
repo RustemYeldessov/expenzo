@@ -25,3 +25,5 @@ build/
 node_modules/
 .idea
 db.sqlite3
+.coverage
+htmlcov/
