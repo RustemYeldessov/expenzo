@@ -112,13 +112,20 @@ class ExpenseDeleteView(
     success_url = reverse_lazy("expenses:index")
     success_message = _("Expense deleted successfully")
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+
+        user_test_result = self.get_test_func()()
+        if not user_test_result:
+            return self.handle_no_permission()
+
+        return super().dispatch(request, *args, **kwargs)
+
     def test_func(self):
         expense = self.get_object()
         return self.request.user == expense.user
 
     def handle_no_permission(self):
-        messages.error(
-            self.request,
-            _("Yot have no permission to perform this action")
-        )
-        return redirect("expenses:index")
+        messages.error(self.request, _("You have no permission to perform this action"))
+        return redirect("users:login")
