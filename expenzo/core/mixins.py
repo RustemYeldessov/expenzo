@@ -5,12 +5,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class SafeDeleteMixin:
-    def post(self, request, *args, **kwargs):
+    def form_valid(self, form):
         try:
-            return super().post(request, *args, **kwargs)
+            return super().form_valid(form)
         except ProtectedError:
             messages.error(
-                request,
+                self.request,
                 _("Cannot delete this item as it is in use")
             )
             return redirect(self.success_url)
