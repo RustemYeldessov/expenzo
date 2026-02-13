@@ -11,7 +11,7 @@
 * **API:** Django REST Framework (DRF)
 * **Database:** PostgreSQL (на Render) / SQLite (локально)
 * **Frontend:** Django Templates, CSS
-* **Интеграции:** Telegram Bot (в разработке 🚧)
+* **Интеграции:** Telegram Bot
 
 ---
 
