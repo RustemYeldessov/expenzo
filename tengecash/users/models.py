@@ -15,6 +15,7 @@ class User(AbstractUser):
         verbose_name=_("Last Name")
     )
     USERNAME_FIELD = 'username'
+    telegram_id = models.BigIntegerField(unique=True, null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
