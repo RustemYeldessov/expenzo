@@ -6,7 +6,7 @@ dj-database-url==3.0.1
 Django==5.2.8
 django-bootstrap5==24.3
 django-filter==25.2
--e git+https://github.com/RustemYeldessov/expenzo.git@e27ec6e9ab157bc4de4e82c888855d6d99d429bb#egg=expenzo
+-e git+https://github.com/RustemYeldessov/tengecash.git@e27ec6e9ab157bc4de4e82c888855d6d99d429bb#egg=tegecash
 gunicorn==23.0.0
 idna==3.11
 iniconfig==2.3.0
