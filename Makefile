@@ -14,7 +14,7 @@ run:
 	uv run python manage.py runserver
 
 render-start:
-	uv run gunicorn expenzo.wsgi
+	uv run gunicorn tengecash.wsgi
 
 render-build:
 	./build.sh
@@ -30,10 +30,10 @@ lint-fix:
 	uv run ruff check --fix
 
 test:
-	uv run pytest --ds=expenzo.settings --reuse-db
+	uv run pytest --ds=tengecash.settings --reuse-db
 
 coverage:
-	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest --ds=expenzo.settings
+	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest --ds=tengecash.settings
 	uv run coverage report --show-missing --skip-covered
 
 ci-install:
@@ -44,6 +44,6 @@ ci-migrate:
 	uv run python manage.py migrate --noinput
 
 ci-test:
-	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest expenzo --ds=expenzo.settings --reuse-db
+	uv run coverage run --omit='*/migrations/*,*/settings.py,*/venv/*,*/.venv/*' -m pytest tengecash --ds=tengecash.settings --reuse-db
 	uv run coverage xml
 	uv run coverage report --show-missing --skip-covered
